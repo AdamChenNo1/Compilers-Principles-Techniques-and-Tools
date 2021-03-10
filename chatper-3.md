@@ -284,3 +284,45 @@ $$
     \% \rightarrow (letter|digit|symbol)*\\
     SQL \rightarrow \_\%
 $$
+
+3.4.1: 给出识别练习3.3.2中各个正则表达式所描述的语言的状态转换图。  
+解：  
+1)a (a | b)* a
+```graphviz
+digraph finite_state_machine {
+    rankdir=LR;
+    size="10,5"
+
+    node [shape = doublecircle]; 4;
+
+    node [shape = circle];
+    0 -> 1 [ label = "a" ];
+    1 -> 2  [ label = "b" ];
+    1 -> 3  [ label = "a" ];
+    2 -> 2  [ label = "b" ];
+    2 -> 3  [ label = "a" ];
+    3 -> 3 [ label = "a" ];
+    3 -> 2  [ label = "b" ];
+    3 -> 4 [ label = "other" ];
+}
+```
+2)(($\epsilon$ | a) b*)*
+```graphviz
+digraph finite_state_machine {
+    rankdir=LR;
+    size="10,5"
+
+    node [shape = doublecircle]; S;
+
+    node [shape = circle];
+    0 -> 1 [ label = "a" ];
+    1 -> S [ label = "other" ];
+    1 -> 4 [ label = "a" ];
+    1 -> 2 [ label = "b" ];
+    0 -> 2  [ label = "b" ];
+    2 -> 2  [ label = "b" ];
+    2 -> 3  [ label = "a" ];
+    2 -> S [ label = "other" ];
+    0 -> S
+}
+```
