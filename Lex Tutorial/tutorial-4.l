@@ -1,17 +1,11 @@
-3.5.2:编写一个Lex程序，该程序拷贝一个文件，并将文件中每个非空的空白符序列替换为单个空格
-解：
-```lex
-/*声明部分*/
 %{
     /* 复制文件，并将新文件中每个非空的空白符序列替换为单个空格 */
     #include <string.h>
     int yylineno;
 %}
-/*规则部分*/
 %%
 [ \t]+ fprintf(yyout," ", yytext);
 . ECHO;
-/*自定义函数部分*/
 %%
 int yywrap(void) {
     return 1;
@@ -24,4 +18,3 @@ int main(int argc, char *argv[]) {
     fclose(yyin);
     fclose(yyout);
 }
-```
