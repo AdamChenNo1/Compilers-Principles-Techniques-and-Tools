@@ -1,6 +1,7 @@
 !*.md
 !*/image/
 src/
+test/
 *.ps1
 *.sh
 *.puml
